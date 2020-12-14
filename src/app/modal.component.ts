@@ -31,6 +31,11 @@ export class ModalComponent implements OnInit {
   }
 
   passBack() {
+    let therapiesArray = [];
+    if (this.speech === true) therapiesArray.push("speech");
+    if (this.occupational === true) therapiesArray.push("occupational");
+    if (this.behavioral === true) therapiesArray.push("behavioral");
+    this.student.therapies = therapiesArray;
     this.passEntry.emit(this.student);
     this.activeModal.close(this.student);
   }

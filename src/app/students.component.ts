@@ -112,6 +112,7 @@ export class StudentsComponent {
     modalRef.componentInstance.student = student;
     modalRef.result.then(result => {
       if (result) {
+        console.log("here");
         console.log(result);
       }
     });
