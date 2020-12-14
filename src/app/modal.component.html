@@ -19,23 +19,39 @@
         id="name"
         aria-describedby="student name"
         ngbAutofocus
+        [(ngModel)]="student.name"
+        name="name"
       />
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Lastname</label>
-      <input type="text" class="form-control" id="lastname" />
     </div>
     <div class="form-check checkbox-container">
       <div>
-        <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck1"
+          [(ngModel)]="speech"
+          name="speech"
+        />
         <label class="form-check-label" for="exampleCheck1">Speech</label>
       </div>
       <div>
-        <input type="checkbox" class="form-check-input" id="exampleCheck2" />
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck2"
+          [(ngModel)]="occupational"
+          name="occupational"
+        />
         <label class="form-check-label" for="exampleCheck2">Occupational</label>
       </div>
       <div>
-        <input type="checkbox" class="form-check-input" id="exampleCheck3" />
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck3"
+          [(ngModel)]="behavioral"
+          name="behavioral"
+        />
         <label class="form-check-label" for="exampleCheck3">Behavioral</label>
       </div>
     </div>

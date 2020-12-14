@@ -96,15 +96,20 @@ export class StudentsComponent {
 
   selectStudent(student: any) {
     console.log(student);
+    this.openModal("edit", student);
   }
 
-  openModal() {
-    const modalRef = this.modalService.open(ModalComponent);
-    modalRef.componentInstance.user = this.user;
-    modalRef.result.then(result => {
-      if (result) {
-        console.log(result);
-      }
-    });
+  openModal(mode, data) {
+    console.log(mode);
+    if (mode === "new") {
+    } else {
+      const modalRef = this.modalService.open(ModalComponent);
+      modalRef.componentInstance.student = data;
+      modalRef.result.then(result => {
+        if (result) {
+          console.log(result);
+        }
+      });
+    }
   }
 }
