@@ -1,26 +1,3 @@
-<!-- <table class="table table-striped">
-	<thead>
-		<tr>
-			<th scope="col">Id</th>
-			<th scope="col">Student Name</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr *ngFor="let student of students" (click)="selectStudent(student)">
-			<td>{{student.id}}</td>
-			<td>
-				{{ student.name }}
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<div class="d-flex justify-content-between p-2">
-	<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-		(pageChange)="refreshStudents()">
-	</ngb-pagination>
-</div> -->
-
 <button
   type="button"
   class="btn btn-primary add-student"
@@ -46,20 +23,21 @@
       <tr>
         <th scope="col">Id</th>
         <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr
-        *ngFor="let student of students$ | async"
-        class="table-highlight"
-        (click)="selectStudent(student)"
-      >
+      <tr *ngFor="let student of students$ | async">
         <th scope="row">{{ student.id }}</th>
         <td>
           <ngb-highlight
             [result]="student.name"
             [term]="service.searchTerm"
+            (click)="selectStudent(student)"
           ></ngb-highlight>
+        </td>
+        <td>
+          <fa-icon [icon]="faTrash" (click)="deleteStudent(student)"></fa-icon>
         </td>
       </tr>
     </tbody>

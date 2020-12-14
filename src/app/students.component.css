@@ -2,9 +2,10 @@ table {
   cursor: pointer;
 }
 
-.table-highlight:hover {
-  background-color: dodgerblue !important;
+ngb-highlight:hover {
+  color: dodgerblue !important;
 }
+
 th[sortable] {
   cursor: pointer;
   user-select: none;
