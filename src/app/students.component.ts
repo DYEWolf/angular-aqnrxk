@@ -113,7 +113,8 @@ export class StudentsComponent {
     modalRef.componentInstance.student = student;
     modalRef.result.then(result => {
       if (student) {
-        this.service.addStudent(student);
+        if (mode === "new") this.service.addStudent(student);
+        if (mode === "edit") this.service.editStudent(student);
       }
     });
   }

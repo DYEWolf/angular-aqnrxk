@@ -64,10 +64,18 @@ export class StudentsService {
     this.getStudents();
   }
 
+  // add, edit and delete students
+
   addStudent(student) {
     const size = this.STUDENTS.students.length;
     student.id = size + 1;
     this.STUDENTS.students.push(student);
+    this.page = this._state.page;
+  }
+
+  editStudent(student) {
+    const index = this.STUDENTS.students.findIndex(obj => obj.id == student.id);
+    this.STUDENTS.students[index] = student;
     this.page = this._state.page;
   }
 
