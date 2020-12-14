@@ -59,6 +59,7 @@ import { NgbdSortableHeader, SortEvent } from "./sortable.directive";
 
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ModalComponent } from "./modal.component";
+import { StudentsDataService } from "./students-data.service";
 
 @Component({
   selector: "students",
@@ -111,9 +112,8 @@ export class StudentsComponent {
     const modalRef = this.modalService.open(ModalComponent);
     modalRef.componentInstance.student = student;
     modalRef.result.then(result => {
-      if (result) {
-        console.log("here");
-        console.log(result);
+      if (student) {
+        this.service.addStudent(student);
       }
     });
   }
