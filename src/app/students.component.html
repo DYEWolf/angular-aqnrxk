@@ -1,0 +1,22 @@
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th scope="col">Id</th>
+			<th scope="col">Student Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr *ngFor="let student of students" (click)="selectStudent(student)">
+			<td>{{student.id}}</td>
+			<td>
+				{{ student.name }}
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+	<ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+		(pageChange)="refreshStudents()">
+	</ngb-pagination>
+</div>
