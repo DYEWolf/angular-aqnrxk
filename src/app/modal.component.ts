@@ -20,6 +20,13 @@ export class ModalComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.student);
+    console.log("here?");
+    for (let i = 0; i < 3; i++) {
+      if (this.student.therapies[i] === "speech") this.speech = true;
+      if (this.student.therapies[i] === "occupational")
+        this.occupational = true;
+      if (this.student.therapies[i] === "behavioral") this.behavioral = true;
+    }
   }
 
   passBack() {
