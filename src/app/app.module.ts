@@ -9,6 +9,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CommonModule } from "@angular/common";
 
 import { NgbdSortableHeader } from "./sortable.directive";
+import { ModalComponent } from "./modal.component";
 
 @NgModule({
   imports: [
@@ -18,7 +19,13 @@ import { NgbdSortableHeader } from "./sortable.directive";
     CommonModule,
     ReactiveFormsModule
   ],
-  declarations: [AppComponent, StudentsComponent, NgbdSortableHeader],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    StudentsComponent,
+    NgbdSortableHeader,
+    ModalComponent
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule {}

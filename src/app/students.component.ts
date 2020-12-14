@@ -57,6 +57,9 @@ import { Student } from "./student";
 import { StudentsService } from "./students.service";
 import { NgbdSortableHeader, SortEvent } from "./sortable.directive";
 
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ModalComponent } from "./modal.component";
+
 @Component({
   selector: "students",
   templateUrl: "./students.component.html",
@@ -67,9 +70,14 @@ export class StudentsComponent {
   students$: Observable<Student[]>;
   total$: Observable<number>;
 
+  public user = {
+    name: "Izzat Nadiri",
+    age: 26
+  };
+
   @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  constructor(public service: StudentsService) {
+  constructor(public service: StudentsService, public modalService: NgbModal) {
     this.students$ = service.students$;
     this.total$ = service.total$;
   }
@@ -88,5 +96,15 @@ export class StudentsComponent {
 
   selectStudent(student: any) {
     console.log(student);
+  }
+
+  openModal() {
+    const modalRef = this.modalService.open(ModalComponent);
+    modalRef.componentInstance.user = this.user;
+    modalRef.result.then(result => {
+      if (result) {
+        console.log(result);
+      }
+    });
   }
 }

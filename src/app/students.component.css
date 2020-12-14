@@ -28,3 +28,8 @@ th[sortable].desc:before {
   transform: rotate(180deg);
   -ms-transform: rotate(180deg);
 }
+
+.add-student {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}

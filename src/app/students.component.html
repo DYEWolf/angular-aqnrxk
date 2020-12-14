@@ -21,32 +21,52 @@
 	</ngb-pagination>
 </div> -->
 
+<button type="button" class="btn btn-primary add-student" (click)="openModal()">
+  Add Student
+</button>
+
 <form>
-	<div class="form-group form-inline">
-		Search Student <input class="form-control ml-2" type="text" name="searchTerm" [(ngModel)]="service.searchTerm"/>
-		<span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
-	</div>
+  <div class="form-group form-inline">
+    Search Student
+    <input
+      class="form-control ml-2"
+      type="text"
+      name="searchTerm"
+      [(ngModel)]="service.searchTerm"
+    />
+    <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+  </div>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col">Id</th>
-				<th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr *ngFor="let student of students$ | async" class="table-highlight" (click)="selectStudent(student)">
-				<th scope="row">{{ student.id }}</th>
-				<td>
-					<ngb-highlight [result]="student.name" [term]="service.searchTerm"></ngb-highlight>
-				</td>
-			</tr>
-		</tbody>
-	</table>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let student of students$ | async"
+        class="table-highlight"
+        (click)="selectStudent(student)"
+      >
+        <th scope="row">{{ student.id }}</th>
+        <td>
+          <ngb-highlight
+            [result]="student.name"
+            [term]="service.searchTerm"
+          ></ngb-highlight>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-	<div class="d-flex justify-content-between p-2">
-		<ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page" [pageSize]="service.pageSize">
-		</ngb-pagination>
-	</div>
-
+  <div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+      [collectionSize]="(total$ | async)!"
+      [(page)]="service.page"
+      [pageSize]="service.pageSize"
+    >
+    </ngb-pagination>
+  </div>
 </form>
