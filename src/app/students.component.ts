@@ -1,50 +1,92 @@
-import { Component } from "@angular/core";
+// import { Component } from "@angular/core";
 
-import { StudentsDataService } from "./students-data.service";
+// import { StudentsDataService } from "./students-data.service";
 
-interface Student {
-  id: number;
-  name: string;
-  therapies: any;
-}
+// interface Student {
+//   id: number;
+//   name: string;
+//   therapies: any;
+// }
+
+// @Component({
+//   selector: "students",
+//   templateUrl: "./students.component.html",
+//   styleUrls: ["./students.component.css"]
+// })
+// export class StudentsComponent {
+//   //students: any = [];
+
+//   page = 1;
+//   pageSize = 10;
+//   students: Student[];
+//   collectionSize;
+//   studentsArray;
+
+//   // Use the StudentsDataService.getStudents function as a mock API to get students.
+//   constructor() {
+//     this.getStudents();
+//   }
+
+//   getStudents() {
+//     StudentsDataService.getStudents().then(res => {
+//       this.studentsArray = res;
+//       this.collectionSize = this.studentsArray.students.length;
+//       this.refreshStudents();
+//     });
+//   }
+
+//   selectStudent(student: any) {
+//     console.log(student);
+//   }
+
+//   refreshStudents() {
+//     this.students = this.studentsArray.students
+//       .map((student, i) => ({ id: i + 1, ...student }))
+//       .slice(
+//         (this.page - 1) * this.pageSize,
+//         (this.page - 1) * this.pageSize + this.pageSize
+//       );
+//   }
+// }
+
+import { DecimalPipe } from "@angular/common";
+import { Component, QueryList, ViewChildren } from "@angular/core";
+import { Observable } from "rxjs";
+
+import { Student } from "./student";
+import { StudentsService } from "./students.service";
+import { NgbdSortableHeader, SortEvent } from "./sortable.directive";
 
 @Component({
   selector: "students",
   templateUrl: "./students.component.html",
-  styleUrls: ["./students.component.css"]
+  styleUrls: ["./students.component.css"],
+  providers: [StudentsService, DecimalPipe]
 })
 export class StudentsComponent {
-  //students: any = [];
+  students$: Observable<Student[]>;
+  total$: Observable<number>;
 
-  page = 1;
-  pageSize = 10;
-  students: Student[];
-  collectionSize;
-  studentsArray;
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
 
-  // Use the StudentsDataService.getStudents function as a mock API to get students.
-  constructor() {
-    this.getStudents();
+  constructor(public service: StudentsService) {
+    this.students$ = service.students$;
+    this.total$ = service.total$;
   }
 
-  getStudents() {
-    StudentsDataService.getStudents().then(res => {
-      this.studentsArray = res;
-      this.collectionSize = this.studentsArray.students.length;
-      this.refreshStudents();
+  onSort({ column, direction }: SortEvent) {
+    // resetting other headers
+    this.headers.forEach(header => {
+      if (header.sortable !== column) {
+        header.direction = "";
+      }
     });
+
+    this.service.sortColumn = column;
+    this.service.sortDirection = direction;
   }
 
   selectStudent(student: any) {
     console.log(student);
-  }
-
-  refreshStudents() {
-    this.students = this.studentsArray.students
-      .map((student, i) => ({ id: i + 1, ...student }))
-      .slice(
-        (this.page - 1) * this.pageSize,
-        (this.page - 1) * this.pageSize + this.pageSize
-      );
   }
 }
