@@ -43,6 +43,22 @@
     </tbody>
   </table>
 
+  <ngb-alert
+    #selfClosingAlert
+    *ngIf="successMessage"
+    type="success"
+    (closed)="successMessage = ''"
+    >{{ successMessage }}
+  </ngb-alert>
+
+  <ngb-alert
+    #deleteSelfClosingAlert
+    *ngIf="deleteMessage"
+    type="warning"
+    (closed)="deleteMessage = ''"
+    >{{ deleteMessage }}
+  </ngb-alert>
+
   <div class="d-flex justify-content-between p-2">
     <ngb-pagination
       [collectionSize]="(total$ | async)!"
