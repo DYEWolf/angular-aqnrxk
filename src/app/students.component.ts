@@ -47,7 +47,13 @@ export class StudentsComponent {
   }
 
   deleteStudent(student) {
-    this.service.deleteStudent(student);
+    const answer = window.confirm(
+      "Are you sure you want to remove this student?"
+    );
+    if (answer) {
+      console.log("yes");
+      this.service.deleteStudent(student);
+    }
   }
 
   openModal(mode, data) {
