@@ -79,6 +79,12 @@ export class StudentsService {
     this.page = this._state.page;
   }
 
+  deleteStudent(student) {
+    const index = this.STUDENTS.students.findIndex(obj => obj.id == student.id);
+    this.STUDENTS.students.splice(index, 1);
+    this.page = this._state.page;
+  }
+
   getStudents() {
     StudentsDataService.getStudents().then(res => {
       this.STUDENTS = res;

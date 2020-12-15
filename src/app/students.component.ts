@@ -47,7 +47,7 @@ export class StudentsComponent {
   }
 
   deleteStudent(student) {
-    console.log(student);
+    this.service.deleteStudent(student);
   }
 
   openModal(mode, data) {
