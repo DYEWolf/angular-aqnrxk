@@ -1,9 +1,10 @@
-table {
+ngb-highlight:hover {
+  color: dodgerblue !important;
   cursor: pointer;
 }
 
-ngb-highlight:hover {
-  color: dodgerblue !important;
+fa-icon {
+  cursor: pointer;
 }
 
 th[sortable] {

@@ -39,7 +39,8 @@ export class StudentsComponent {
 
   @ViewChild("selfClosingAlert", { static: false }) selfClosingAlert: NgbAlert;
 
-  @ViewChild("deleteSelfClosingAlert", { static: false }) deleteSelfClosingAlert: NgbAlert;
+  @ViewChild("deleteSelfClosingAlert", { static: false })
+  deleteSelfClosingAlert: NgbAlert;
 
   constructor(public service: StudentsService, public modalService: NgbModal) {
     this.students$ = service.students$;
@@ -102,14 +103,10 @@ export class StudentsComponent {
     modalRef.componentInstance.student = student;
     modalRef.result.then(result => {
       if (student) {
-        if (mode === "new") {
-          this.service.addStudent(student);
-          this._success.next(`Student saved successfully`);
-        }
+        if (mode === "new") this.service.addStudent(student);
         if (mode === "edit") this.service.editStudent(student);
+        this._success.next(`Student saved successfully`);
       }
     });
   }
-
-
 }
