@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Presence Learning</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss('Cross click')"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        aria-describedby="student name"
+        ngbAutofocus
+        [(ngModel)]="student.name"
+        name="name"
+      />
+    </div>
+    <div class="form-check checkbox-container">
+      <div>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck1"
+          [(ngModel)]="speech"
+          name="speech"
+        />
+        <label class="form-check-label" for="exampleCheck1">Speech</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck2"
+          [(ngModel)]="occupational"
+          name="occupational"
+        />
+        <label class="form-check-label" for="exampleCheck2">Occupational</label>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          class="form-check-input"
+          id="exampleCheck3"
+          [(ngModel)]="behavioral"
+          name="behavioral"
+        />
+        <label class="form-check-label" for="exampleCheck3">Behavioral</label>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary submit-button"
+      (click)="passBack()"
+    >
+      Submit
+    </button>
+  </form>
+</div>

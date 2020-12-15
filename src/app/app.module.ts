@@ -8,15 +8,28 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import { CommonModule } from "@angular/common";
 
+import { NgbdSortableHeader } from "./sortable.directive";
+import { ModalComponent } from "./modal.component";
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     NgbModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ],
-  declarations: [AppComponent, StudentsComponent],
-  bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    StudentsComponent,
+    NgbdSortableHeader,
+    ModalComponent
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [ModalComponent]
 })
 export class AppModule {}
